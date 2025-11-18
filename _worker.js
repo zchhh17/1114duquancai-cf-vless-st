@@ -9,7 +9,7 @@
       1、socks5或者http代理所有网站(即：全局代理),格式：s5all=xxx或者httpall=xxx,二者任选其一
       2、socks5代理cf相关的网站，非cf相关的网站走直连,格式：socks5=xxx或者socks5://xxx
       3、http代理cf相关的网站，非cf相关的网站走直连,格式：http=xxx或者http://xxx
-      4、proxyip代理cf相关的网站，非cf相关的网站走直连,格式：pyip=xxx或者proxyip=xxx
+      4、proxyip代理cf相关的网站，非cf相关的网站走直连,格式：proxyip=xxx
       5、nat64代理cf相关的网站，非cf相关的网站走直连,格式：nat64pf=[2602:fc59:b0:64::]
       6、如果path路径不设置留空，cf相关的网站无法访问
       以上六种任选其一即可
@@ -100,7 +100,7 @@ async function startTransferPipeline(ws, url) {
           tcpConn = connect({ hostname: addrType === 3 ? `[${destHost}]` : destHost, port: destPort });
           await tcpConn.opened;
         } catch {
-          const pyipMatch = tempPath.match(/p(?:rox)?yip\s*=\s*([^&]+(?:\d+)?)/i)?.[1];
+          const pyipMatch = tempPath.match(/proxyip\s*=\s*([^&]+(?:\d+)?)/i)?.[1];
           const nat64Match = tempPath.match(/nat64pf\s*=\s*([^&]+(?:\d+)?)/i)?.[1];
           const httpMatch = tempPath.match(/http\s*(?:=|(?::\/\/))\s*([^&]+(?:\d+)?)/i)?.[1];
           if (pyipMatch) {
